@@ -4,6 +4,8 @@ import "./App.css";
 import Drawing from "./components/Drawing";
 import RangeSlider from "./components/RangeSlider";
 import StrokeCheck from "./components/StrokeCheck";
+import ColorPicker from "./components/ColorPicker";
+import NumberPicker from "./components/NumberPicker";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -11,7 +13,9 @@ function App() {
     <>
       <RangeSlider />
       <StrokeCheck />
-      <Drawing />;
+      <ColorPicker />
+      <NumberPicker />
+      <Drawing />
     </>
   );
 }
