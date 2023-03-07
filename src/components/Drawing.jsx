@@ -1,4 +1,5 @@
-const Drawing = ({amount}) =>{
+const Drawing = ({amount,radius,strokeCheck}) =>{
+    
        const circleAmount =[];
        for (let i = 0; i < amount; i++) {
          circleAmount.push(i);
@@ -14,7 +15,11 @@ const Drawing = ({amount}) =>{
           <circle key={index}
             cx={(Math.random() * 2000).toString()}
             cy={(Math.random() * 2000).toString()}
-            r="50"
+            r={radius}
+            stroke={strokeCheck ? "blue": ""}
+
+            
+            
           />
         );
        })}

@@ -9,19 +9,15 @@ import NumberPicker from "./components/NumberPicker";
 
 function App() {
   const [amount, setAmount] = useState(100);
+  const [radius, setRadius] = useState(10);
+  const [strokeCheck, setStrokeCheck] = useState(false);
   return (
     <>
-      <RangeSlider />
-      <StrokeCheck />
+      <RangeSlider value={radius} onRangeChange={setRadius} />
+      <StrokeCheck  value={strokeCheck} onStrokeCheck={setStrokeCheck} />
       <ColorPicker />
-      <NumberPicker 
-
-      value={amount}
-      onNumberChange = {setAmount}
-      
-      
-      />
-      <Drawing amount={amount} />
+      <NumberPicker value={amount} onNumberChange={setAmount} />
+      <Drawing amount={amount} radius={radius} strokeCheck={strokeCheck}/>
     </>
   );
 }
