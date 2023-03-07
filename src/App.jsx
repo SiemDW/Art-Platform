@@ -8,14 +8,20 @@ import ColorPicker from "./components/ColorPicker";
 import NumberPicker from "./components/NumberPicker";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [amount, setAmount] = useState(100);
   return (
     <>
       <RangeSlider />
       <StrokeCheck />
       <ColorPicker />
-      <NumberPicker />
-      <Drawing />
+      <NumberPicker 
+
+      value={amount}
+      onNumberChange = {setAmount}
+      
+      
+      />
+      <Drawing amount={amount} />
     </>
   );
 }
