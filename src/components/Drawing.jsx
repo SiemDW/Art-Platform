@@ -1,33 +1,21 @@
-const Drawing = ({amount,radius,strokeCheck}) =>{
-    
-       const circleAmount =[];
-       for (let i = 0; i < amount; i++) {
-         circleAmount.push(i);
-       } 
+const Drawing = ({ circles }) => {
 
-       return(
-
-         <svg  className="svg-container" >  
-         
-          {circleAmount.map(index =>{
-
+  return (
+    <svg className="svg-container">
+      {circles.map((circle, index) => {
         return (
-          <circle key={index}
-            cx={(Math.random() * 2000).toString()}
-            cy={(Math.random() * 2000).toString()}
-            r={radius}
-            stroke={strokeCheck ? "blue": ""}
-
-            
-            
+          <circle
+            key={index}
+            cx={circle.x}
+            cy={circle.y}
+            r={circle.radius}
+            stroke={circle.strokeCheck ? "blue" : ""}
+            fill={circle.color}
           />
         );
-       })}
-          </svg>
-       )
-      
-
-   
+      })}
+    </svg>
+  );
 };
 
 export default Drawing;

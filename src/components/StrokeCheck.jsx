@@ -4,9 +4,9 @@ const StrokeCheck = ({value, onStrokeCheck }) =>{
 
         <label> Stroke
             <input  type="checkbox" onChange={(e)=>{
-                {e.target.checked
-                  ? onStrokeCheck((value = true))
-                  : onStrokeCheck((value = false)); }
+
+                {onStrokeCheck(e.target.checked ? value = true : value = false)}
+               
                 
             }} />
         </label>
