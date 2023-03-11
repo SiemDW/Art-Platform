@@ -1,4 +1,4 @@
-const StrokeCheck = ({value, onStrokeCheck }) =>{
+const StrokeCheck = ({  value, onStrokeCheck }) =>{
 
     return (
 

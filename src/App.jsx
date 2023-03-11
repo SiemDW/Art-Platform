@@ -9,13 +9,13 @@ import NumberPicker from "./components/NumberPicker";
 
 
 
-const generateCirle = (color, radius, strokeCheck) => 
-({
+const generateCirle = (color, radius, strokeCheck) => ({
   x: Math.random() * 1000,
   y: Math.random() * 1000,
   color: RandomColorValueInRange(hexToHSL(color)),
   radius,
   strokeCheck,
+  strokeColor: RandomColorValueInRange(hexToHSL(color))
 });
 
 const generateCirles = (amount,color,radius,strokeCheck) => {
@@ -115,7 +115,6 @@ function App() {
   const [radius, setRadius] = useState(10);
   const [strokeCheck, setStrokeCheck] = useState(false);
   const [color, setColor] = useState('#a2d025');
-
   const [circles, setCircles] = useState(generateCirles(amount,color,radius,strokeCheck));
  
 
@@ -165,6 +164,7 @@ function App() {
     const updated = tmp.map((circle) => {
       const tmpCircle = { ...circle };
       tmpCircle.color = RandomColorValueInRange(hexToHSL(value));
+      tmpCircle.strokeColor = RandomColorValueInRange(hexToHSL(value));
       return tmpCircle;
     });
     setCircles(updated);
@@ -174,13 +174,12 @@ function App() {
   return (
     <>
       <RangeSlider value={radius} onRangeChange={handleRangeChange} />
-      <StrokeCheck value={strokeCheck} onStrokeCheck={handleStrokeCheck} />
+      <StrokeCheck  value={strokeCheck} onStrokeCheck={handleStrokeCheck} />
       <ColorPicker value={color} onColorChange={handleColorChange} />
       <NumberPicker value={amount} onNumberChange={handleAmount} />
       <Drawing
         circles={circles}
-        convertHEXtoHSL={hexToHSL}
-        RandomColorValueInRange={RandomColorValueInRange}
+       
       />
     </>
   );
