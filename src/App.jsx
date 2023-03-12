@@ -5,11 +5,13 @@ import RangeSlider from "./components/RangeSlider";
 import StrokeCheck from "./components/StrokeCheck";
 import ColorPicker from "./components/ColorPicker";
 import NumberPicker from "./components/NumberPicker";
+import ToleranceSlider from "./components/ToleranceSlider";
 
 
 
 
-const generateCirle = (color, radius, strokeCheck,rotations) => { 
+
+const generateCirle = (color, radius, strokeCheck,rotations,tolerance) => { 
   const arcsChoice = [
     "full",
     {
@@ -34,19 +36,21 @@ const generateCirle = (color, radius, strokeCheck,rotations) => {
      x: Math.random() * 1000,
      y: Math.random() * 1000,
      color: RandomColorValueInRange(hexToHSL(color)),
-     radius,
+     radius: addTolerance(radius,tolerance),
      rotations: rotations[Math.floor(Math.random() * 3.999)],
      arcs: arcsChoice[Math.floor(Math.random() * 3.999)],
      strokeCheck,
      strokeColor: RandomColorValueInRange(hexToHSL(color)),
    };};
 
-const generateCirles = (amount,color,radius,strokeCheck) => {
+const generateCirles = (amount,color,radius,strokeCheck,tolerance) => {
   const rotateAmount = [0, 90, 180, 270]
   
   const arr = new Array(amount).fill(null);
-  return arr.map(() => generateCirle(color,radius,strokeCheck,rotateAmount));
+  return arr.map(() => generateCirle(color,radius,strokeCheck,rotateAmount,tolerance));
 };
+
+
 
 
 const hexToHSL = (H) => {
@@ -131,24 +135,58 @@ const RandomColorValueInRange = (hslColor) => {
   );
 };
 
+const addTolerance = (radius,tolerance) =>{
+   let min =0;
+   let max = 0;
+   if (radius - tolerance <= 0) {
+     min = 0;
+   } else {
+     min = radius - tolerance;
+   }
+   
+   
+
+    max = radius + tolerance
+   
+   return  Math.random() * (max - min) + min;
+
+
+}
+
 
 
 
 
 function App() {
+  const [tolerance, setTolerance] = useState(0);
   const [amount, setAmount] = useState(100);
-  const [radius, setRadius] = useState(10);
+  const [radius, setRadius] = useState(0);
   const [strokeCheck, setStrokeCheck] = useState(false);
   const [color, setColor] = useState('#a2d025');
-  const [circles, setCircles] = useState(generateCirles(amount,color,radius,strokeCheck));
+  const [circles, setCircles] = useState(generateCirles(amount,color,radius,strokeCheck,tolerance));
  
 
-  const handleRangeChange = (value) => {
+  const handleRangeChange = (value,oldValue,min,max,step) => {
     const tmp = [...circles];
-    console.log(tmp)
+   
 ;    const updated = tmp.map((circle) => {
       const tmpCircle = { ...circle };
-      tmpCircle.radius = value;
+      
+    if (value < oldValue && tolerance > 0) {
+      tmpCircle.radius = tmpCircle.radius;
+      value = oldValue;
+    }
+
+      else if (value > oldValue) {
+      const difference = value - oldValue;
+       tmpCircle.radius = tmpCircle.radius + difference;
+       
+     } 
+     else if(value < oldValue && tolerance ===0){
+      tmpCircle.radius = value
+     
+     }
+      
       return tmpCircle;
     });
     setRadius(value);
@@ -179,8 +217,19 @@ function App() {
   const handleAmount = (amount) =>{
    
    setAmount(amount);
-   setCircles(generateCirles(amount,color,radius,strokeCheck));
+   setCircles(generateCirles(amount,color,radius,strokeCheck,tolerance));
    
+  }
+
+  const handleToleranceChange = (tolerance) =>{
+ const tmp = [...circles];
+  const updated = tmp.map((circle) => {
+    const tmpCircle = { ...circle };
+    tmpCircle.radius = addTolerance(radius,tolerance);
+    return tmpCircle;
+  });
+setCircles(updated);
+setTolerance(tolerance)
   }
 
 
@@ -202,6 +251,7 @@ function App() {
   return (
     <>
       <RangeSlider value={radius} onRangeChange={handleRangeChange} />
+      <ToleranceSlider   value={tolerance} onToleranceChange={handleToleranceChange} ></ToleranceSlider>
       <StrokeCheck  value={strokeCheck} onStrokeCheck={handleStrokeCheck} />
       <ColorPicker value={color} onColorChange={handleColorChange} />
       <NumberPicker value={amount} onNumberChange={handleAmount} />
