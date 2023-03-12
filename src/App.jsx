@@ -9,18 +9,43 @@ import NumberPicker from "./components/NumberPicker";
 
 
 
-const generateCirle = (color, radius, strokeCheck) => ({
-  x: Math.random() * 1000,
-  y: Math.random() * 1000,
-  color: RandomColorValueInRange(hexToHSL(color)),
-  radius,
-  strokeCheck,
-  strokeColor: RandomColorValueInRange(hexToHSL(color))
-});
+const generateCirle = (color, radius, strokeCheck,rotations) => { 
+  const arcsChoice = [
+    "full",
+    {
+      type: "half",
+      color: RandomColorValueInRange(hexToHSL(color)),
+    },
+    {
+      type: "third",
+      color: RandomColorValueInRange(hexToHSL(color)),
+      color2: RandomColorValueInRange(hexToHSL(color)),
+    },
+    {
+      type: "quarter",
+      color: RandomColorValueInRange(hexToHSL(color)),
+      color2: RandomColorValueInRange(hexToHSL(color)),
+      color3: RandomColorValueInRange(hexToHSL(color)),
+    },
+    
+  ]; 
+  
+   return {
+     x: Math.random() * 1000,
+     y: Math.random() * 1000,
+     color: RandomColorValueInRange(hexToHSL(color)),
+     radius,
+     rotations: rotations[Math.floor(Math.random() * 3.999)],
+     arcs: arcsChoice[Math.floor(Math.random() * 3.999)],
+     strokeCheck,
+     strokeColor: RandomColorValueInRange(hexToHSL(color)),
+   };};
 
 const generateCirles = (amount,color,radius,strokeCheck) => {
+  const rotateAmount = [0, 90, 180, 270]
+  
   const arr = new Array(amount).fill(null);
-  return arr.map(() => generateCirle(color,radius,strokeCheck));
+  return arr.map(() => generateCirle(color,radius,strokeCheck,rotateAmount));
 };
 
 
@@ -152,7 +177,7 @@ function App() {
   
 
   const handleAmount = (amount) =>{
-
+   
    setAmount(amount);
    setCircles(generateCirles(amount,color,radius,strokeCheck));
    
@@ -163,6 +188,9 @@ function App() {
     const tmp = [...circles];
     const updated = tmp.map((circle) => {
       const tmpCircle = { ...circle };
+      if(tmpCircle.arcs.color) { tmpCircle.arcs.color = RandomColorValueInRange(hexToHSL(value)) }
+      if(tmpCircle.arcs.color2) { tmpCircle.arcs.color2 = RandomColorValueInRange(hexToHSL(value)) }
+      if(tmpCircle.arcs.color3) { tmpCircle.arcs.color3 = RandomColorValueInRange(hexToHSL(value)) }
       tmpCircle.color = RandomColorValueInRange(hexToHSL(value));
       tmpCircle.strokeColor = RandomColorValueInRange(hexToHSL(value));
       return tmpCircle;
