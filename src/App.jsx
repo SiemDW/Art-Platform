@@ -160,7 +160,7 @@ const addTolerance = (radius,tolerance) =>{
 function App() {
   const [tolerance, setTolerance] = useState(0);
   const [amount, setAmount] = useState(100);
-  const [radius, setRadius] = useState(0);
+  const [radius, setRadius] = useState(10);
   const [strokeCheck, setStrokeCheck] = useState(false);
   const [color, setColor] = useState('#a2d025');
   const [circles, setCircles] = useState(generateCirles(amount,color,radius,strokeCheck,tolerance));
