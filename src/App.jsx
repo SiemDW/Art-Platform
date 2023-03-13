@@ -257,7 +257,8 @@ setTolerance(tolerance)
       <NumberPicker value={amount} onNumberChange={handleAmount} />
       <Drawing
         circles={circles}
-        
+        backgroundColor={color}
+
        
       />
     </>

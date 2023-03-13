@@ -1,19 +1,19 @@
-const Drawing = ({ circles }) => {
+const Drawing = ({ circles  , backgroundColor }) => {
+
+  console.log(backgroundColor);
   
 
   return (
-    <svg  className="svg-container"> 
-    <rectangle  className="background-rectangle"  />
+    <svg  className="svg-container">
+      <rect className="background-rectangle" fill={backgroundColor}  />
       {circles.map((circle, index) => {
-        
-        
         const pathArray = [
           <path
             d={
               "M" +
               circle.x.toString() +
               " " +
-              (circle.y +  circle.radius).toString() +
+              (circle.y + circle.radius).toString() +
               "A" +
               circle.radius.toString() +
               " " +
@@ -33,7 +33,7 @@ const Drawing = ({ circles }) => {
             strokeWidth="0"
             stroke=""
           />,
-          <path 
+          <path
             d={
               "M" +
               circle.x.toString() +
@@ -84,8 +84,6 @@ const Drawing = ({ circles }) => {
             stroke=""
           />,
         ];
-        ;
-     
         return (
           <g
             transform={
@@ -99,7 +97,6 @@ const Drawing = ({ circles }) => {
             }
             key={index}
           >
-            
             <circle
               cx={circle.x}
               cy={circle.y}
@@ -119,7 +116,7 @@ const Drawing = ({ circles }) => {
               cx={circle.x}
               cy={circle.y}
               r={circle.radius}
-              fillOpacity = "0"
+              fillOpacity="0"
               strokeWidth="3"
               stroke={circle.strokeCheck ? circle.strokeColor : ""}
             />

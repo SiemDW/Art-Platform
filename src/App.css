@@ -1,4 +1,4 @@
-.svg-container{
+.svg-container, .background-rectangle{
   border: red  3px solid;
   display: block;
   margin: 0 auto;
@@ -9,4 +9,5 @@
   left: 10%;
   
 }
+
 
