@@ -33,8 +33,8 @@ const generateCirle = (color, radius, strokeCheck,rotations,tolerance) => {
   ]; 
   
    return {
-     x: Math.random() * 1000,
-     y: Math.random() * 1000,
+     x: (Math.random() * (window.innerWidth - (window.innerWidth* 0.20)))+(window.innerWidth* 0,10), 
+     y: (Math.random() * (window.innerHeight - (window.innerHeight* 0.30)))+(window.innerHeight* 0,15),
      color: RandomColorValueInRange(hexToHSL(color)),
      radius: addTolerance(radius,tolerance),
      rotations: rotations[Math.floor(Math.random() * 3.999)],
@@ -257,6 +257,7 @@ setTolerance(tolerance)
       <NumberPicker value={amount} onNumberChange={handleAmount} />
       <Drawing
         circles={circles}
+        
        
       />
     </>

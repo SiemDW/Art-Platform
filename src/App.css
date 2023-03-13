@@ -4,5 +4,9 @@
   margin: 0 auto;
   width: 80vw;
   height: 70vh;
+  position: absolute;
+  top:15%;
+  left: 10%;
+  
 }
 

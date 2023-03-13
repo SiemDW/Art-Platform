@@ -2,7 +2,8 @@ const Drawing = ({ circles }) => {
   
 
   return (
-    <svg className="svg-container">
+    <svg  className="svg-container"> 
+    <rectangle  className="background-rectangle"  />
       {circles.map((circle, index) => {
         
         
@@ -32,7 +33,7 @@ const Drawing = ({ circles }) => {
             strokeWidth="0"
             stroke=""
           />,
-          <path
+          <path 
             d={
               "M" +
               circle.x.toString() +
@@ -98,6 +99,7 @@ const Drawing = ({ circles }) => {
             }
             key={index}
           >
+            
             <circle
               cx={circle.x}
               cy={circle.y}
