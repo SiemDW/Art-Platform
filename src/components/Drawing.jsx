@@ -5,7 +5,7 @@ const Drawing = ({ circles  , backgroundColor }) => {
 
   return (
     <svg  className="svg-container">
-      <rect className="background-rectangle" fill={backgroundColor}  />
+      <rect className="background-rectangle" fill={backgroundColor} fillOpacity="50%"  />
       {circles.map((circle, index) => {
         const pathArray = [
           <path

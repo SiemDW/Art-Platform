@@ -34,7 +34,7 @@ const generateCirle = (color, radius, strokeCheck,rotations,tolerance) => {
   
    return {
      x: (Math.random() * (window.innerWidth - (window.innerWidth* 0.20)))+(window.innerWidth* 0,10), 
-     y: (Math.random() * (window.innerHeight - (window.innerHeight* 0.30)))+(window.innerHeight* 0,15),
+     y: (Math.random() * (window.innerHeight - (window.innerHeight* 0.30)))+(window.innerHeight* 0,20),
      color: RandomColorValueInRange(hexToHSL(color)),
      radius: addTolerance(radius,tolerance),
      rotations: rotations[Math.floor(Math.random() * 3.999)],
@@ -250,17 +250,21 @@ setTolerance(tolerance)
 
   return (
     <>
-      <RangeSlider value={radius} onRangeChange={handleRangeChange} />
-      <ToleranceSlider   value={tolerance} onToleranceChange={handleToleranceChange} ></ToleranceSlider>
-      <StrokeCheck  value={strokeCheck} onStrokeCheck={handleStrokeCheck} />
-      <ColorPicker value={color} onColorChange={handleColorChange} />
-      <NumberPicker value={amount} onNumberChange={handleAmount} />
-      <Drawing
-        circles={circles}
-        backgroundColor={color}
-
        
-      />
+       <div className="app-container">
+         <h1> Art Circle Generator</h1>
+               
+               <div className="input-container">
+                 <RangeSlider value={radius} onRangeChange={handleRangeChange} />
+                 <ToleranceSlider   value={tolerance} onToleranceChange={handleToleranceChange} ></ToleranceSlider>
+                 <StrokeCheck  value={strokeCheck} onStrokeCheck={handleStrokeCheck} />
+                 <ColorPicker value={color} onColorChange={handleColorChange} />
+                 <NumberPicker value={amount} onNumberChange={handleAmount} />
+               </div>
+               <Drawing
+          circles={circles}
+          backgroundColor={color}/>
+       </div>
     </>
   );
 }

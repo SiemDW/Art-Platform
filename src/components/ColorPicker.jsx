@@ -2,7 +2,11 @@ const ColorPicker = ({value, onColorChange}) =>{
 
   
 return(  
-<input type="color" value={value} onChange={(e) => onColorChange((e.target.value).toString())} />
+
+<div>
+    <label for="color"> Color</label>
+    <input  id="color" type="color" value={value} onChange={(e) => onColorChange((e.target.value).toString())} />
+</div>
 
 )
   
