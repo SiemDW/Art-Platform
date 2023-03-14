@@ -1,24 +1,21 @@
-const RangeSlider = ({value,onRangeChange}) =>{
-return (
+const RangeSlider = ({ value, onRangeChange }) => {
+  return (
+    <div>
+      <label htmlFor="range">
+        Radius
+      </label>
 
-  <div>
-    <label for="range"> <span>Radius</span>  </label>
-    
       <input
-      id="range"
+        id="range"
         type="range"
         min={0}
         max={100}
         value={value}
-        step= {1}
-    
-        onChange={(e) => onRangeChange(parseInt(e.target.value, 10),value,0,100,1)}
+        step={1}
+        onChange={(e) => onRangeChange(parseInt(e.target.value, 10), value)}
       />
-    
-  </div>
-);
-   
-}
-
+    </div>
+  );
+};
 
 export default RangeSlider;

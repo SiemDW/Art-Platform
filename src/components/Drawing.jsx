@@ -1,14 +1,16 @@
-const Drawing = ({ circles  , backgroundColor }) => {
-
+const Drawing = ({ circles, backgroundColor }) => {
   console.log(backgroundColor);
-  
 
   return (
-    <svg  className="svg-container">
-      <rect className="background-rectangle" fill={backgroundColor} fillOpacity="50%"  />
+    <svg className="svg-container">
+      <rect
+        className="background-rectangle"
+        fill={backgroundColor}
+        fillOpacity="50%"
+      />
       {circles.map((circle, index) => {
         const pathArray = [
-          <path
+          <path //making arc
             d={
               "M" +
               circle.x.toString() +
@@ -113,6 +115,7 @@ const Drawing = ({ circles  , backgroundColor }) => {
               : null}
             {circle.arcs.type === "quarter" ? pathArray[2] : null}
             <circle
+              //adding another circle so that the range is on top of the arcs aswell and giving opacity to fill
               cx={circle.x}
               cy={circle.y}
               r={circle.radius}
