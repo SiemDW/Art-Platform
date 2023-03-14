@@ -149,7 +149,7 @@ const addTolerance = (radius, tolerance) => {
   return Math.random() * (max - min) + min;
 };
 
-function App() {
+const App = () => {
   const [tolerance, setTolerance] = useState(0);
   const [amount, setAmount] = useState(100);
   const [radius, setRadius] = useState(30);
