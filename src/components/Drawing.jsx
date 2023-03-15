@@ -1,5 +1,5 @@
 const Drawing = ({ circles, backgroundColor }) => {
-  console.log(backgroundColor);
+ 
 
   return (
     <svg className="svg-container">
